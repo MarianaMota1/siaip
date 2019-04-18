@@ -3,10 +3,14 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <?php if ($this->session->userdata('usuario') != null) { ?>
-                    <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Aluno</a></li>
-                    <li><a href="#">Professor</a></li>
-                    <li><a href="#">Export</a></li>
+                    <li><?= anchor('dashboard', 'INÍCIO') ?></li>
+                    <?php if ($this->session->userdata('usuario')['nivel'] == "ADMINISTRADOR") { ?>
+                        <li><?= anchor('usuario', 'USUÁRIOS') ?></li>
+                        <li><a href="#">Export</a></li>
+                    <?php } else if ($this->session->userdata('usuario')['nivel'] == "NÚCLEO") { ?>
+						<li><?= anchor('professor', 'PROFESSORES') ?></li>
+						<li><?= anchor('aluno', 'ALUNOS') ?></li>
+					<?php } ?>
                 <?php } else { ?>
                     <li><?= anchor('/', 'ÁREA DE ACESSO') ?></li>
                 <?php } ?>

@@ -13,11 +13,9 @@
         <div id="navbar" class="navbar-collapse collapse">
             <?php if ($this->session->userdata('usuario') != NULL) { ?>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Sair</a></li>
+					<li><?= anchor('usuario/edit', 'MEUS DADOS') ?></li>
+                    <li><a href="#" onclick="logout()">SAIR</a></li>
                 </ul>
-                <form class="navbar-form navbar-right">
-                    <input type="text" class="form-control" placeholder="Procurar...">
-                </form>
             <?php } ?>
         </div>
     </div>

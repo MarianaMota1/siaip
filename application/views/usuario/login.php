@@ -6,7 +6,21 @@
         <div class="row">
             <div class="col-md-6">
                 <h3><b>ÁREA DE ACESSO</b></h3>
-                <?= form_open("usuario/postLogin") ?>
+                <?php if (validation_errors() != NULL) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <?= validation_errors() ?>
+                    </div>
+                <?php } ?>
+                <?php if ($this->session->flashdata('danger') != null) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <b><?= $this->session->flashdata('danger') ?></b>
+                    </div>
+                <?php } ?>
+                <?= form_open("usuario/login") ?>
                 <div class="form-group">
                     <?= form_label('EMAIL', 'email') ?>
                     <?= form_input(['id' => 'email', 'name' => 'email', 'class' => 'form-control', 'placeholder' => 'EMAIL', 'autofocus' => true], set_value('email')) ?>
